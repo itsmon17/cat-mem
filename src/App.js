@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const button = document.getElementById("avoid-button");
+
+document.getElementById("yes-button").addEventListener("click", function () {
+  const image = document.getElementById("myImage");
+  image.classList.remove("hidden");
+  console.log(image);
+});
+document.addEventListener("mousemove", function (event) {
+  const x = event.clientX;
+  const y = event.clientY;
+  const buttonRect = button.getBoundingClientRect();
+
+  if (
+    x > buttonRect.left &&
+    x < buttonRect.right &&
+    y > buttonRect.top &&
+    y < buttonRect.bottom
+  ) {
+    const newX = Math.random() * (window.innerWidth - buttonRect.width);
+    const newY = Math.random() * (window.innerHeight - buttonRect.height);
+
+    button.style.left = newX + "px";
+    button.style.top = newY + "px";
+  }
+});
+
+const App = () => {};
 
 export default App;
